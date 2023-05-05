@@ -5,9 +5,9 @@ const Navbar = ({ user }) => {
     return (
         <div className="navbar bg-base-100">
             <div className="flex-1">
-                <a className="btn btn-ghost normal-case text-xl">
-                    LaReact<span className="ml-1 text-white/80">News</span>
-                </a>
+                <Link href="/" className="btn btn-ghost normal-case text-xl">
+                    LaReact
+                </Link>
             </div>
             <div className="flex-none gap-2">
                 <div className="form-control">

@@ -38,16 +38,20 @@ export default function Dashboard(props) {
             auth={props.auth}
             errors={props.errors}
             header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    LaReact News
+                <h2 className="font-semibold text-xl text-gray-800 leading-tight hover:text-secondary">
+                    LaReact
                 </h2>
             }
         >
             <Head title="Dashboard" />
 
-            <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="p-6 bg-white border-b border-gray-200 rounded-lg shadow-lg hover:shadow-none">
+            <div className="min-h-screen container mx-auto">
+                <div className="text-2xl p-4 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 font-bold">
+                    Form Input Postingan
+                </div>
+                {/* Form Input */}
+                <div className="pt-6 pb-2 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="p-6 bg-white border-b border-gray-200 rounded-lg shadow-lg hover:shadow-inner">
                         {props.flash.message && (
                             <div className="alert alert-info shadow-lg">
                                 <div>
@@ -94,80 +98,91 @@ export default function Dashboard(props) {
                             value={category}
                         />
                         <button
-                            className="btn btn-primary m-2"
+                            className="btn btn-outline btn-accent m-2 shadow-lg hover:shadow-inner"
                             onClick={() => handleSubmit()}
                         >
                             SUBMIT
                         </button>
                     </div>
                 </div>
-                <div className="p-4">
-                    {props.myNews && props.myNews.length > 0 ? (
-                        props.myNews.map((news, index) => {
-                            return (
-                                <div
-                                    key={index}
-                                    className="card w-full lg:w-96 shadow-xl hover:shadow-inner bg-white/50 m-2"
-                                >
-                                    <div className="card-body">
-                                        <h2 className="card-title">
-                                            {news.title}
-                                            <div className="badge badge-secondary">
-                                                NEW
-                                            </div>
-                                        </h2>
-                                        <p>{news.description}</p>
-                                        <div className="card-actions justify-end">
-                                            <div className="badge badge-inline">
-                                                {news.category}
-                                            </div>
-                                            <div className="badge badge-outline">
-                                                <Link
-                                                    href={route("edit.news")}
-                                                    method="get"
-                                                    data={{ id: news.id }}
-                                                    as="button"
-                                                >
-                                                    edit
-                                                </Link>
-                                            </div>
-                                            <div className="badge badge-outline">
-                                                <Link
-                                                    href={route("delete.news")}
-                                                    method="post"
-                                                    data={{ id: news.id }}
-                                                    as="button"
-                                                >
-                                                    delete
-                                                </Link>
+                {/* Hasil Input */}
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 className="text-xl ">Berita Anda</h1>
+                    <div
+                        className="flex justify-start flex-col lg:flex-row lg:flex-wrap lg:items-stretch items-center 
+            gap-4 "
+                    >
+                        {props.myNews && props.myNews.length > 0 ? (
+                            props.myNews.map((news, index) => {
+                                return (
+                                    <div
+                                        key={index}
+                                        className="card w-full lg:w-96 shadow-xl hover:shadow-inner bg-white/50"
+                                    >
+                                        <div className="card-body">
+                                            <h2 className="card-title">
+                                                {news.title}
+                                                <div className="badge badge-secondary">
+                                                    NEW
+                                                </div>
+                                            </h2>
+                                            <p>{news.description}</p>
+                                            <div className="card-actions justify-end">
+                                                <div className="badge badge-inline">
+                                                    {news.category}
+                                                </div>
+                                                <div className="badge badge-outline">
+                                                    <Link
+                                                        href={route(
+                                                            "edit.news"
+                                                        )}
+                                                        method="get"
+                                                        data={{ id: news.id }}
+                                                        as="button"
+                                                    >
+                                                        edit
+                                                    </Link>
+                                                </div>
+                                                <div className="badge badge-outline">
+                                                    <Link
+                                                        href={route(
+                                                            "delete.news"
+                                                        )}
+                                                        method="post"
+                                                        data={{ id: news.id }}
+                                                        as="button"
+                                                    >
+                                                        delete
+                                                    </Link>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                );
+                            })
+                        ) : (
+                            <div className="alert shadow-lg hover:shadow-none max-w-2xl mx-auto bg-white/50">
+                                <div>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        className="stroke-info flex-shrink-0 w-6 h-6"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        ></path>
+                                    </svg>
+                                    <span className="uppercase">
+                                        Tidak ada berita
+                                    </span>
                                 </div>
-                            );
-                        })
-                    ) : (
-                        <div className="alert shadow-lg hover:shadow-none max-w-2xl mx-auto bg-white/50">
-                            <div>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    className="stroke-info flex-shrink-0 w-6 h-6"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                                    ></path>
-                                </svg>
-                                <span className="uppercase">
-                                    Tidak ada berita
-                                </span>
                             </div>
-                        </div>
-                    )}
+                        )}
+                    </div>
                 </div>
             </div>
         </AuthenticatedLayout>

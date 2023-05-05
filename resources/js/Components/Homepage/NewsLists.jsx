@@ -1,7 +1,7 @@
 const isNews = (news) => {
     return news.map((data, i) => {
         return (
-            <div key={i} className="card w-full lg:w-96 bg-base-100 shadow-xl hover:shadow-none">
+            <div key={i} className="card w-full sm:w-96 bg-base-100 shadow-xl hover:shadow-none">
                 <figure>
                     <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
                 </figure>
