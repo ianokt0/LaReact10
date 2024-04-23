@@ -5,6 +5,12 @@ import Footer from "@/Components/Footer";
 import NewsLists from "@/Components/Homepage/NewsLists";
 import Paginator from "@/Components/Homepage/Paginator";
 
+let movings = function(){
+    console.log("Move test");
+}
+
+movings();
+
 export default function Homepage(props) {
     console.log("props :", props);
     return (
